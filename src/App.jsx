@@ -8,6 +8,7 @@ import { Sections } from './components/Sections';
 import { FreeMint } from './components/FreeMint';
 import { CreateAuction } from './components/CreateAuction';
 import { AuctionInteraction } from './components/AuctionInteraction';
+import { Grid } from "@material-ui/core"
 
 
 const config: Config = {
@@ -31,8 +32,14 @@ function App() {
 
   return (
     <DAppProvider config={config} >
-        <Sections sectionChanger = {(sec) => {setSection(sec)}}></Sections>
-        <Header></Header>
+        <Grid container spacing={2}>
+          <Grid item xs = {6}>
+          <Sections sectionChanger = {(sec) => {setSection(sec)}}></Sections>
+          </Grid>
+          <Grid item xs = {6}>
+          <Header></Header>
+          </Grid>
+        </Grid>
         {section === 1 ? (
           <NFTForm sectionChanger = {(sec) => {setSection(sec)}} setData = {(data) => {setAuctionData(data)}}></NFTForm>
         ):(

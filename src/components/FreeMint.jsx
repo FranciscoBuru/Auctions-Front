@@ -8,8 +8,19 @@ import {Button, Snackbar, CircularProgress, ImageList , makeStyles} from "@mater
 import Alert from "@material-ui/lab/Alert"
 
 
+const useStyles = makeStyles((theme) => ({
+    container:{
+        padding: theme.spacing(4),
+        display: "flex",
+        justifyContent: "center",
+        gap: theme.spacing(1)
+    }
+}))
+
 
 export const FreeMint = () => {
+
+    const classes = useStyles()
 
     const METADATA = "https://ipfs.io/ipfs/QmR6xprTY253fDPM423C5t3EjdTVXuqPDXjPJhpp7v7gQc"
     const { chainId } = useEthers()
@@ -42,6 +53,7 @@ export const FreeMint = () => {
 
     return(
         <>
+        <div className={classes.container}>
         <Button 
             color = "secondary" 
             variant="contained" 
@@ -50,12 +62,17 @@ export const FreeMint = () => {
             onClick={() => mint()}>
                 {isMining ? <CircularProgress size={26} /> : "Mint new NFT"}
         </Button>
+        </div>
+        <div className={classes.container}>
         <p>Status: {status}</p>
+        </div>
+        <div className={classes.container}>
         {txStatus ? (
             <Alert  onClose={handleCloseSnack} severity="success">
                 Your NFT has been minted! see it in https://testnets.opensea.io
             </Alert>
         ):(<></>)}
+        </div>
         </>
     )
 }
