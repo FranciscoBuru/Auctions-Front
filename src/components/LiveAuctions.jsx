@@ -32,28 +32,7 @@ export const LiveAuctions = (props) => {
 
 
     useEffect(() => {
-        //Decir cuales si tienen un NFT dentro  
-        const getInfo = async (auctionContract) => {
-            let res = await auctionContract.auction_state()
-            console.log(parseInt(res) === 0)
-            if (parseInt(res) === 0){
-                return false
-            }else{
-                return true
-            }
-        }
-        
-        console.log(auctions)
-        const auctionAbi = new utils.Interface(SealedBidAuction["abi"])
-        let resp = []
-        for (var i = 0, len = auctions.length; i < len; i++) {
-            const auctionContract = new Contract(auctions[i], auctionAbi, getDefaultProvider('rinkeby'))     
-            if(getInfo(auctionContract)){
-                resp.push(auctions[i])
-            }
-        }
-        console.log(resp)
-        setActiveAuctions(resp)
+        setActiveAuctions(auctions)
         setIndicador(true)
     }, [auctions])
 
@@ -68,6 +47,8 @@ export const LiveAuctions = (props) => {
             res = await factoryContract.sealedBidAuctionArray(i).catch(() => false)
             if (res){
                 addresses.push(res)
+            }else{
+                aux = false
             }
             i = i+1
         }
