@@ -34,7 +34,7 @@ function App() {
     <DAppProvider config={config} >
         <Grid container spacing={2}>
           <Grid item xs = {6}>
-          <Sections sectionChanger = {(sec) => {setSection(sec)}}></Sections>
+          <Sections sectionChanger = {(sec) => {setSection(sec)}} section = {section}></Sections>
           </Grid>
           <Grid item xs = {6}>
           <Header></Header>

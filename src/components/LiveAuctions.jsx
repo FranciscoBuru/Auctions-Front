@@ -36,6 +36,10 @@ export const LiveAuctions = (props) => {
         setIndicador(true)
     }, [auctions])
 
+    useEffect(() => {
+        getAuctions()
+    }, [])
+
 
 
     const getAuctions = async() => {
@@ -43,9 +47,13 @@ export const LiveAuctions = (props) => {
         let i = 0
         let aux = true
         let res
+        console.log("Clicked!")
+        console.log(factoryContract)
         while (aux){
-            res = await factoryContract.sealedBidAuctionArray(i).catch(() => false)
+            console.log(i)
+            res = await factoryContract.sealedBidAuctionArray(i).catch(() => res = false)
             if (res){
+                console.log(false)
                 addresses.push(res)
             }else{
                 aux = false
@@ -58,8 +66,8 @@ export const LiveAuctions = (props) => {
     return(
         <>
         <div className={classes.container}>
-            <Button onClick={() => {getAuctions()}}>Show live auctions</Button>
-        </div>
+                <h4>Click on an auction to interact with it.</h4>
+            </div>
         {indicador ? (
             <>
             <div className={classes.container}>
@@ -69,7 +77,7 @@ export const LiveAuctions = (props) => {
             </div>
             </>
         ):(
-            <></>
+            <h3>Loading auctions...</h3>
         )}
         </>
     )

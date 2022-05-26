@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { 
     Button,
     Card, 
@@ -43,6 +43,25 @@ export const AuctionInteraction = (props) => {
 
     const [offerTime, setOfferTime] = useState()
     const [revealTime, setRevealTime] = useState()
+    const [winner, setWinner] = useState()
+    const [offer, setOffer] = useState()
+
+
+    useEffect(() => {
+        if(props.state === 4){
+            getWinner()
+        }
+        onClickFunctionnn()
+    }, [])
+
+
+    const getWinner = async () => {
+        let state = await auctionContract.winner();
+        let ofr = await auctionContract.amount();
+        setWinner(state);
+        setOffer(utils.formatEther(ofr));
+        
+    }
 
 
     const onClickFunctionnn = async () => {
@@ -55,7 +74,8 @@ export const AuctionInteraction = (props) => {
         setOfferTime(offerCloseTime.toString())
         setRevealTime(revealCloseTime.toString())
       }
-    
+
+
     return(
         
         <>
@@ -63,6 +83,20 @@ export const AuctionInteraction = (props) => {
             <Typography gutterBottom variant="h4" component="div">
                 This is a live auction in state {props.state}, please keep reading
             </Typography>
+            </div>
+            <div className={classes.container}>
+            {winner ? (
+                <Typography gutterBottom variant="h4" component="div">
+                    Auction winner: {winner} eth.
+                </Typography>
+            ):(<></>)}
+            </div>
+            <div className={classes.container}>
+            {offer ? (
+                <Typography gutterBottom variant="h4" component="div">
+                    Auction winning offer: {offer}
+                </Typography>
+            ):(<></>)}
             </div>
             <div className={classes.container}>
                 <List>
@@ -112,7 +146,6 @@ export const AuctionInteraction = (props) => {
                     </>
                     ):(<></>)}
                 </List>
-                <Button variant="contained" color="secondary" onClick={() => {onClickFunctionnn()}}>CLICK ME to Load Auction Times</Button>
             </div>
             <Grid container spacing={2}>
                 <Grid item xs = {2}></Grid>

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
@@ -41,6 +41,10 @@ export const AuctionCard = (props) => {
         }
     }
 
+    useEffect(() => {
+      getImage()
+    }, [])
+
     const onClickFunction = () => {
         props.setData(token)
         props.setState(auctionState)
@@ -65,7 +69,7 @@ export const AuctionCard = (props) => {
           )}
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-              {props.address}
+              Auction address {props.address.slice(0,8)}...{props.address.slice(39,42)}
               </Typography>
               {auctionState ? (
                   <Typography gutterBottom variant="caption" component="div">
@@ -74,7 +78,6 @@ export const AuctionCard = (props) => {
               ):(<></>)}
             </CardContent>
       </CardActionArea>
-      <Button onClick = {() => {getImage()}}>Load Image</Button>
       </Card>
       </ImageListItem>
         </>

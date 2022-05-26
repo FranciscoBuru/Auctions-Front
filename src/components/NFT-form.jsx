@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {TextField, Button,  Container, ImageList , makeStyles} from "@material-ui/core"
 import {NFTCard} from "./NftCard"
 import {useEthers} from "@usedapp/core"
@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
 export const NFTForm = (props) => {
 
     const classes = useStyles()
-    const [wallet, setWallet] = useState("")
     const [nfts, setNfts] = useState()
     const {account} = useEthers()
 
@@ -32,15 +31,15 @@ export const NFTForm = (props) => {
       console.log(nfts.ownedNfts)
     }
 
+    useEffect(() => {
+        fetchNFTs(account);
+    }, [account])
+
+
     return(
         <>
             <div className={classes.container}>
-                <Button variant="contained" onClick={() => {
-                    fetchNFTs(account)
-                }}>
-                    Show NFTs in wallet
-                </Button>
-                <h5>Click on an NFT to create an auction.</h5>
+                <h4>Click on an NFT to auction it.</h4>
             </div>
             <div className={classes.container}>
             <ImageList sx={{ width: 500, height: 450}} cols={3} rowHeight={164}>

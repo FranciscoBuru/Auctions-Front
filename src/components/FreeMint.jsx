@@ -22,7 +22,7 @@ export const FreeMint = () => {
 
     const classes = useStyles()
 
-    const METADATA = "https://ipfs.io/ipfs/QmR6xprTY253fDPM423C5t3EjdTVXuqPDXjPJhpp7v7gQc"
+    const METADATA = "https://ipfs.io/ipfs/QmYHT7H8GdCaPzViFfAwGoK3spbq8bEkqAB9kMzNhhLeUe"
     const { chainId } = useEthers()
     const { abi } = CollectibleCreator
     const collectibleCreatorAddress = chainId ? networkMapping[String(chainId)]["CollectibleCreator"][0] : constants.AddressZero
