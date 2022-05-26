@@ -17,14 +17,14 @@ export const Sections = (props) => {
     return(
         <>
         <div className={classes.container}>
-        {props.section === 1 ? (
+        {props.section === 1 || props.section === 4 ? (
             <>
             <Button variant="contained" color="primary" onClick={() => {props.sectionChanger(1)}}>My NFTs</Button>
             <Button variant="outlined" onClick={() => {props.sectionChanger(2)}}>Active Auctions</Button>
             <Button variant="outlined" onClick={() => {props.sectionChanger(3)}}>Free Mint</Button>
             </>
         ):(<></>)}
-        {props.section === 2 ? (
+        {props.section === 2 || props.section === 5 ? (
             <>
             <Button variant="outlined" onClick={() => {props.sectionChanger(1)}}>My NFTs</Button>
             <Button variant="contained" color="primary" onClick={() => {props.sectionChanger(2)}}>Active Auctions</Button>

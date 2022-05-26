@@ -8,7 +8,7 @@ import { Sections } from './components/Sections';
 import { FreeMint } from './components/FreeMint';
 import { CreateAuction } from './components/CreateAuction';
 import { AuctionInteraction } from './components/AuctionInteraction';
-import { Grid } from "@material-ui/core"
+import { Grid, makeStyles } from "@material-ui/core"
 
 
 const config: Config = {
@@ -29,6 +29,7 @@ function App() {
   const [auctoinData, setAuctionData] = useState("")
   const [state, setState] = useState("")
   const [auctionAddress, setAuctionAddress] = useState("")
+
 
   return (
     <DAppProvider config={config} >

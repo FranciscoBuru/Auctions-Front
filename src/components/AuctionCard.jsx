@@ -55,7 +55,7 @@ export const AuctionCard = (props) => {
     return(
         <>
         <ImageListItem>
-        <Card sx={{ maxWidth: 345 }} variant="outlined">
+        <Card sx={{ maxWidth: 345 }} variant="outlined" style={{backgroundColor: "#f5f4e4" ,borderRadius: '15px', margin: '10px'}}>
           <CardActionArea onClick={() => {onClickFunction()}}>
           {imageUrl ? (
               <CardMedia
