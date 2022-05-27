@@ -1,10 +1,10 @@
 {
   "contracts": {
-    "AuctionFactory": "7f661a10678f38ad6f03d77b2dd71dd8561990b8",
+    "AuctionFactory": "e1d1089483dab7f2fa814408ae0db1aa1e2c6cb9",
     "CollectibleCreator": "ce2b24682b5910a1f407f84c88aa23ef5f92e569",
     "OpenZeppelin/openzeppelin-contracts@4.5.0/ERC721": "a43935dd434126ae8d538411eca992dffe8348cd",
     "OpenZeppelin/openzeppelin-contracts@4.5.0/Strings": "1ce946f6a4eaa185320328620ccf999b9e86db7c",
-    "SealedBidAuction": "58dd4e717dc2f5c33ed8f33b570756579389d596",
+    "SealedBidAuction": "1f316d1e668d15f1babdec26321bb891f6b09431",
     "TimeOracle": "984761e5ab1aade2c756c25c45cc9f7000f63a44"
   },
   "tests": {
@@ -12,39 +12,39 @@
       "coverage": false,
       "isolated": false,
       "results": "s...",
-      "sha1": "a2be070921dfcc3407afb09d26b5ba46fb0bc18e",
+      "sha1": "9247da54f646dbcbf91ff24c3b37754822c9d972",
       "txhash": [
-        "48297d4fac537dd2d1058183f5aa0909c949825f",
-        "f4f177dc96a1666de10a618b4fd6d2a369045a50"
+        "275b4e7f7262ec7191e8fc12cd9c34f378cd580f",
+        "da41ef5c80dad2bec2d2c011a9761ddfe5dce3f1"
       ]
     },
     "tests/test_unit.py": {
       "coverage": false,
       "isolated": false,
       "results": "..........................................",
-      "sha1": "2a6db032437ed6b92b6c237fc43fc02be34e70f3",
+      "sha1": "28c4894e9434e3b94396b8f72f6e71b23b5e6a02",
       "txhash": [
         "03b6a0a9f79f853a9fb08fbdcdbf1582e164cdbb",
-        "0448c4e9d4ce8a418d994d889cf98598f0a9d756",
-        "240e45f955189eae2ad5042cbc62aa2aebfccf6c",
-        "2808e87d494fa0beb3f4519e56f8e81487e6ead9",
-        "318bd81d706e1d6a0dd8ac3a848ba3d741148851",
-        "3ddba8ed4fd1078d16bb53f683d32b3279a61c79",
+        "1b7d98c99886823c4d0721c2e3a931d724cddc2f",
         "4387c1bbe59054db048ae7ecb8403edad569e320",
-        "4af99aae33ca8b502cd1a8e533462c1d98450adf",
-        "4c28f01ad6fb3d7172b659c775407c4f25c9a2a7",
-        "6168920f7b22ae8b814fbee3c7d5b7a9898aef7f",
+        "4b4b7666cdae5dca7b77709487a1554ef1881b6f",
+        "4de7c36629ecc0555c0432940bad0b5d8732c904",
+        "4e79bceb71e0a5c9d417addbc76172c10fd8eb92",
         "62b34cdb9b5d4bd4faed7f78260a44627dbe21fb",
-        "637c284ee83fd24e1bcfb359bf6edca5501b8024",
+        "6347c707bf21cdba8374ad2e4a1b60f1270efd9b",
+        "7c6aec954e45846807ce929cf880a7843c679bc3",
+        "7f14abdac6b95886dda8d7ed7fe85bb30b5f91fb",
+        "836fbfe350a5850ffbc02657bb70ed20061a2d7f",
         "847075606bde3fc2b58005d7208d9492e766115a",
-        "926a7331a9b8190c3c46003d918929ca5b55dd9f",
+        "8de798cc8d5e52256c6ff47e092563aac85049be",
         "a54a0139eae591b79e7e776404cb534b5915cf6d",
-        "ad37cc281c6c06826bb0b32cda97660fc16ed68d",
-        "bc3a230e6fee3b63e3a66d72f6aaead22b0bb6a1",
-        "cc20e31db8d2efbee401fba49d6cf137347080d7",
+        "b8d983943a7e608646b1fcff78a57dc1da5a64e8",
+        "c509762a886cfd21f60d44b52e2189046eccc988",
         "d43e865144d30d246c2f49ea2a8e1f7a4841dc17",
         "d672210a982110989f24e3ec3cce6f02713f4940",
-        "e96bcefe47031e6784814f0d2ef97e70a7034073",
+        "d73f7aea4def8d5392a7b7ece95a3a2b7c1030fb",
+        "eb0a819bd92692b88c51bdaf5c390e8b9dd512b8",
+        "f6de3380c1263329ea9f207f2cd650b217e85b80",
         "f7cf83a257b3cf20ac697b30e6333bfc99f39775"
       ]
     }
@@ -59,46 +59,20 @@
         ],
         "7": [
           [
-            46,
-            47,
-            48
+            49,
+            50,
+            51
           ],
           [
-            86
+            94
           ],
           [
-            85
+            93
           ]
         ]
       }
     },
-    "0448c4e9d4ce8a418d994d889cf98598f0a9d756": {
-      "SealedBidAuction": {
-        "1": [
-          [],
-          [],
-          []
-        ],
-        "4": [
-          [],
-          [],
-          []
-        ],
-        "7": [
-          [
-            34,
-            35
-          ],
-          [
-            81
-          ],
-          [
-            80
-          ]
-        ]
-      }
-    },
-    "240e45f955189eae2ad5042cbc62aa2aebfccf6c": {
+    "1b7d98c99886823c4d0721c2e3a931d724cddc2f": {
       "SealedBidAuction": {
         "0": [
           [],
@@ -112,21 +86,21 @@
         ],
         "7": [
           [
-            39,
-            40
+            42,
+            43
           ],
           [
-            83
+            91
           ],
           [
-            82
+            90
           ]
         ]
       }
     },
-    "2808e87d494fa0beb3f4519e56f8e81487e6ead9": {
+    "275b4e7f7262ec7191e8fc12cd9c34f378cd580f": {
       "SealedBidAuction": {
-        "1": [
+        "0": [
           [],
           [],
           []
@@ -138,53 +112,14 @@
         ],
         "7": [
           [
-            34,
-            35
+            42,
+            43
           ],
           [
-            81
+            91
           ],
           [
-            80
-          ]
-        ]
-      }
-    },
-    "318bd81d706e1d6a0dd8ac3a848ba3d741148851": {
-      "SealedBidAuction": {
-        "7": [
-          [
-            21
-          ],
-          [
-            73
-          ],
-          []
-        ]
-      }
-    },
-    "3ddba8ed4fd1078d16bb53f683d32b3279a61c79": {
-      "SealedBidAuction": {
-        "1": [
-          [],
-          [],
-          []
-        ],
-        "4": [
-          [],
-          [],
-          []
-        ],
-        "7": [
-          [
-            34,
-            35
-          ],
-          [
-            81
-          ],
-          [
-            80
+            90
           ]
         ]
       }
@@ -209,54 +144,47 @@
             3
           ],
           [
-            67
+            70
           ],
           [
-            66
+            69
           ]
         ]
       }
     },
-    "48297d4fac537dd2d1058183f5aa0909c949825f": {
+    "4b4b7666cdae5dca7b77709487a1554ef1881b6f": {
       "SealedBidAuction": {
-        "0": [
-          [],
-          [],
-          []
-        ],
-        "4": [
-          [],
-          [],
-          []
-        ],
         "7": [
           [
-            39,
-            40
+            19
           ],
           [
-            83
+            77,
+            78
           ],
           [
-            82
+            75
           ]
         ]
       }
     },
-    "4af99aae33ca8b502cd1a8e533462c1d98450adf": {
+    "4de7c36629ecc0555c0432940bad0b5d8732c904": {
       "SealedBidAuction": {
         "7": [
           [
-            26
+            19
           ],
           [
-            76
+            77,
+            78
           ],
-          []
+          [
+            75
+          ]
         ]
       }
     },
-    "4c28f01ad6fb3d7172b659c775407c4f25c9a2a7": {
+    "4e79bceb71e0a5c9d417addbc76172c10fd8eb92": {
       "SealedBidAuction": {
         "1": [
           [],
@@ -270,40 +198,14 @@
         ],
         "7": [
           [
-            30,
-            31
+            37,
+            38
           ],
           [
-            79
+            89
           ],
           [
-            78
-          ]
-        ]
-      }
-    },
-    "6168920f7b22ae8b814fbee3c7d5b7a9898aef7f": {
-      "SealedBidAuction": {
-        "0": [
-          [],
-          [],
-          []
-        ],
-        "4": [
-          [],
-          [],
-          []
-        ],
-        "7": [
-          [
-            39,
-            40
-          ],
-          [
-            83
-          ],
-          [
-            82
+            88
           ]
         ]
       }
@@ -327,9 +229,53 @@
         ]
       }
     },
-    "637c284ee83fd24e1bcfb359bf6edca5501b8024": {
+    "6347c707bf21cdba8374ad2e4a1b60f1270efd9b": {
       "SealedBidAuction": {
-        "1": [
+        "7": [
+          [
+            16
+          ],
+          [
+            75,
+            76
+          ],
+          []
+        ]
+      }
+    },
+    "7c6aec954e45846807ce929cf880a7843c679bc3": {
+      "SealedBidAuction": {
+        "7": [
+          [
+            16
+          ],
+          [
+            75,
+            76
+          ],
+          []
+        ]
+      }
+    },
+    "7f14abdac6b95886dda8d7ed7fe85bb30b5f91fb": {
+      "SealedBidAuction": {
+        "7": [
+          [
+            19
+          ],
+          [
+            77,
+            78
+          ],
+          [
+            75
+          ]
+        ]
+      }
+    },
+    "836fbfe350a5850ffbc02657bb70ed20061a2d7f": {
+      "SealedBidAuction": {
+        "0": [
           [],
           [],
           []
@@ -341,14 +287,14 @@
         ],
         "7": [
           [
-            34,
-            35
+            42,
+            43
           ],
           [
-            81
+            91
           ],
           [
-            80
+            90
           ]
         ]
       }
@@ -362,17 +308,17 @@
         ],
         "7": [
           [
-            46,
-            47
+            49,
+            50
           ],
           [],
           [
-            85
+            93
           ]
         ]
       }
     },
-    "926a7331a9b8190c3c46003d918929ca5b55dd9f": {
+    "8de798cc8d5e52256c6ff47e092563aac85049be": {
       "SealedBidAuction": {
         "1": [
           [],
@@ -386,14 +332,14 @@
         ],
         "7": [
           [
-            34,
-            35
+            37,
+            38
           ],
           [
-            81
+            89
           ],
           [
-            80
+            88
           ]
         ]
       }
@@ -402,51 +348,64 @@
       "SealedBidAuction": {
         "7": [
           [
-            46
+            49
           ],
           [
-            85
+            93
           ],
           []
         ]
       }
     },
-    "ad37cc281c6c06826bb0b32cda97660fc16ed68d": {
+    "b8d983943a7e608646b1fcff78a57dc1da5a64e8": {
       "SealedBidAuction": {
+        "1": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [],
+          [],
+          []
+        ],
         "7": [
           [
-            21
+            37,
+            38
           ],
           [
-            73
+            89
           ],
-          []
+          [
+            88
+          ]
         ]
       }
     },
-    "bc3a230e6fee3b63e3a66d72f6aaead22b0bb6a1": {
+    "c509762a886cfd21f60d44b52e2189046eccc988": {
       "SealedBidAuction": {
+        "1": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [],
+          [],
+          []
+        ],
         "7": [
           [
-            26
+            37,
+            38
           ],
           [
-            76
-          ],
-          []
-        ]
-      }
-    },
-    "cc20e31db8d2efbee401fba49d6cf137347080d7": {
-      "SealedBidAuction": {
-        "7": [
-          [
-            21
+            89
           ],
           [
-            73
-          ],
-          []
+            88
+          ]
         ]
       }
     },
@@ -464,10 +423,10 @@
         ],
         "7": [
           [
-            39
+            42
           ],
           [
-            82
+            90
           ],
           []
         ]
@@ -495,17 +454,17 @@
             5
           ],
           [
-            69
+            72
           ],
           [
-            66,
-            67,
-            68
+            69,
+            70,
+            71
           ]
         ]
       }
     },
-    "e96bcefe47031e6784814f0d2ef97e70a7034073": {
+    "d73f7aea4def8d5392a7b7ece95a3a2b7c1030fb": {
       "SealedBidAuction": {
         "1": [
           [],
@@ -519,28 +478,80 @@
         ],
         "7": [
           [
-            34,
-            35
+            37,
+            38
           ],
           [
-            81
+            89
           ],
           [
-            80
+            88
           ]
         ]
       }
     },
-    "f4f177dc96a1666de10a618b4fd6d2a369045a50": {
+    "da41ef5c80dad2bec2d2c011a9761ddfe5dce3f1": {
       "SealedBidAuction": {
         "7": [
           [
-            21
+            28
           ],
           [
-            73
+            81
           ],
           []
+        ]
+      }
+    },
+    "eb0a819bd92692b88c51bdaf5c390e8b9dd512b8": {
+      "SealedBidAuction": {
+        "1": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [],
+          [],
+          []
+        ],
+        "7": [
+          [
+            37,
+            38
+          ],
+          [
+            89
+          ],
+          [
+            88
+          ]
+        ]
+      }
+    },
+    "f6de3380c1263329ea9f207f2cd650b217e85b80": {
+      "SealedBidAuction": {
+        "1": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [],
+          [],
+          []
+        ],
+        "7": [
+          [
+            33,
+            34
+          ],
+          [
+            87
+          ],
+          [
+            86
+          ]
         ]
       }
     },
@@ -565,11 +576,11 @@
             4
           ],
           [
-            68
+            71
           ],
           [
-            66,
-            67
+            69,
+            70
           ]
         ]
       }
