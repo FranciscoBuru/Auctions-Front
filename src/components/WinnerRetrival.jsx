@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles} from "@material-ui/core"
+import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
     const useStyles = makeStyles((theme) => ({
@@ -50,14 +50,9 @@ export const WinnerRetrival = (props) => {
 
     return(
         <>
-        <h2>If you won get your new NFT:</h2>
-        <div className={classes.container}>
-            <List>
-                <ListItem>
-                    <ListItemText primary="If you c run this then congrats! YOU WON! Clisk the next button to claum your new NFT. Dont forget to get any leftovers of your deposit, you can do that with the next button." />
-                </ListItem>
-            </List>
-        </div>
+        <Typography variant="h5">
+           Winner! Get your NFT!:
+        </Typography>
         <div className={classes.container}>
         <Button 
             color = "secondary" 
@@ -74,6 +69,9 @@ export const WinnerRetrival = (props) => {
                NFT Claimed!
             </Alert>
         ):(<></>)}
+        <Typography variant="h5">
+          And also your leftover eth from your deposit, if there is any.
+        </Typography>
         </>
     )
 }

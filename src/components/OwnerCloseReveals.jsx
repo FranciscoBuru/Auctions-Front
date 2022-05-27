@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button, TextField, makeStyles} from "@material-ui/core"
+import {CircularProgress, Button, TextField, makeStyles, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
     const useStyles = makeStyles((theme) => ({
@@ -76,7 +76,9 @@ export const OwnerCloseReveals = (props) => {
 
     return(
         <>
-        <h2>Close reveals and reveal minimim price, only auctioneer:</h2>
+        <Typography variant="h5">
+            Close Offers and reveal minimum price:
+        </Typography>
         <div className={classes.container}>
         <TextField id="setPrice" label="Minimum price" variant="standard" onChange={e => ckeckPriceChanges(e.target.value)} />
         </div>

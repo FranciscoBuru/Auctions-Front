@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import Alert from "@material-ui/lab/Alert"
 import { 
     Button,
@@ -12,6 +12,7 @@ import {
     ListItemText,  
     List,
     ListItem,  
+    Tooltip,
     makeStyles} from "@material-ui/core"
 import AuctionFactory from "../chain-info/contracts/AuctionFactory.json"
 import { constants, utils, getDefaultProvider } from 'ethers'
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export const CreateAuction = (props) => {
     
     const classes = useStyles()
+    const myRef = useRef()
     const [minPrice, setMinPrice] = useState()
     const [secret, setSecret] = useState("")
     const [offersTime, setOffersTime] = useState("")
@@ -57,6 +59,7 @@ export const CreateAuction = (props) => {
     const isMining = status === "Mining"
     const [txStatus, setTxStatus] = useState(false)
     const [newAuctionAddress, setNewAuctionAddress] = useState("")
+    const [thirdTrigger, setThirdTrigger] = useState(false)
 
     const handleCloseSnack = () => {
         setTxStatus(false)
@@ -73,6 +76,13 @@ export const CreateAuction = (props) => {
         // Primero el approve
 
     }, [newAuctionAddress])
+
+    useEffect(() => {
+        if(creationConfirm){
+             myRef.current.scrollIntoView() 
+        }
+        
+    }, [creationConfirm])
 
 
     const confirmAuction = async () => {
@@ -105,7 +115,7 @@ export const CreateAuction = (props) => {
 
     const ckeckSecretChanges = (word) =>{
         setCreationConfirm(false)
-        if(!/^[a-zA-Z]/.test(word)){
+        if(!word.match("^[A-Za-z]+$")){
             setWordAlert(true)
             setSecret("")
         }else{
@@ -121,8 +131,8 @@ export const CreateAuction = (props) => {
             let arr1 = arr[0].split("/")
             let arr2 = arr[1].split(":")
             if(arr1.length === 3 && arr2.length === 2){
-                let day = parseInt(arr1[0])
-                let month = parseInt(arr1[1])
+                let month = parseInt(arr1[0])
+                let day = parseInt(arr1[1])
                 let year = parseInt(arr1[2])
                 let hour = parseInt(arr2[0])
                 let min = parseInt(arr2[1])
@@ -138,7 +148,7 @@ export const CreateAuction = (props) => {
         if(!priceAlert && !wordAlert){
             setOffersTime(time(document.getElementById("dateOffers").value))
             setRevealsTime(time(document.getElementById("dateReveals").value))
-            setCreationConfirm(true)
+            setCreationConfirm(true)  
         }
     }
 
@@ -147,43 +157,14 @@ export const CreateAuction = (props) => {
         
         <>
             <div className={classes.container}>
-            <Typography gutterBottom variant="h4" component="div">
-                Please take the time to read the following:
-            </Typography>
-            </div>
-            <div className={classes.container}>
-                <List>
-                    <ListItem>
-                        <ListItemText primary="Prices are in eth." />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Minimim price will be encripted with the secret word. To reveal price you MUST remember bouth. In case you don't, the minimum price will be set to 0." />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="For the secret word we recommend not to use something trivial, but we won't stop you. Open a dictionary and choose a new one for you" />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Once the reveals date happens you will have 1 full day to reveal your minimum price. I you don't, it will be set to 0 and the auction will continue." />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="When the auction ends you will be able to retrive the price yourself. If the minimum price is not met then you will be able to get your NFT back." />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Once you start the auction there is no going back. You can not cancel it." />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Upon Auction creation you MUST transfer the token to the contract for the auction to start." />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Please follow the format specified for the dates. An example would be '23/04/2022 15:34'. Set it to your timezone, the system will convertet to UNIX time automatically. " />
-                    </ListItem>
-                </List>
             </div>
             <Grid container spacing={2}>
-                <Grid item xs = {2}></Grid>
+                <Grid item xs = {1}></Grid>
                 <Grid item xs = {4}>
-                    <h2>Create Auction For:</h2>
-                    <Card sx={{ maxWidth: 345 }} variant="outlined">
+                <Typography variant="h5">
+                    Create Auction For:
+                </Typography>
+                    <Card sx={{ maxWidth: 345 }} variant="outlined" style={{backgroundColor: "#f5f4e4" ,borderRadius: '15px', margin: '10px'}}>
                         <CardMedia
                         component="img"
                         height="320"
@@ -205,13 +186,23 @@ export const CreateAuction = (props) => {
                         </Typography>
                         </CardContent>
                     </Card>
+                    <Typography gutterBottom variant="h6" component="div">
+                    </Typography>
                 </Grid>
+                <Grid item xs = {1}></Grid>
                 <Grid item xs = {6}>
-                    
-                    <h2>Auction preferences:</h2>
+                { !txStatus ? (
+                <>
+                <Typography gutterBottom variant="h5" >
+                Auction setup:
+                </Typography>
                     <div className={classes.container}>
+                    <Tooltip title="Minimum price you are willing to receive">
                     <TextField id="setPrice" label="Minimum price (eth)" variant="standard" onChange={e => ckeckPriceChanges(e.target.value)} />
+                    </Tooltip>
+                    <Tooltip title="Secret, we will hash your price and this to keep price private.">
                     <TextField id="standard-basic" label="Secret Word" variant="standard" onChange={e => ckeckSecretChanges(e.target.value)} />
+                    </Tooltip>
                     </div>
                     <div className={classes.container}>
                         {priceAlert ? (
@@ -223,24 +214,25 @@ export const CreateAuction = (props) => {
                         ):(<></>)}
                     </div>
                     <div className={classes.container}>
-                        <h4>Close offers date and Time:</h4><TextField id="dateOffers" label="dd/mm/yyyy hh:mm" variant="standard"  onChange={() => setCreationConfirm(false)}/>
-                        </div>
-                        <div className={classes.container}>
-                        <h4>Close reveals date and Time:</h4><TextField id="dateReveals" label="dd/mm/yyyy hh:mm" variant="standard" onChange={() => setCreationConfirm(false)}/>
+                        <Tooltip title="When will offers end?">
+                        <TextField helperText="Close offers date" id="dateOffers" label="mm/dd/yyyy hh:mm" variant="standard"  onChange={() => setCreationConfirm(false)}/>
+                        </Tooltip>
+                        <Tooltip title="When will reveals end?">
+                        <TextField helperText="Close reveals date" id="dateReveals" label="mm/dd/yyyy hh:mm" variant="standard" onChange={() => setCreationConfirm(false)}/>
+                        </Tooltip>
                     </div>
                     <div className={classes.container}>
-                        <Button variant="outlined" color="primary" onClick={() => {createAuction()}}>Create Auction!</Button>
-                    </div>
-                        {creationConfirm ? (
-                            <>
+                        <Button variant="contained" color="primary" onClick={() => {createAuction()}}>Create Auction!</Button>
+                        <Button variant="text">Read the FAQ</Button>
+                    </div>   
+                    </>):(<></>)}             
+                    <div ref={myRef}>
+                       
+                        {creationConfirm && !txStatus ? (
+                                <>
                                 <div className={classes.container}>
                                 <Typography variant="h5">
-                                Review auction preferences:
-                                </Typography>
-                                </div>
-                                <div className={classes.container}>
-                                <Typography variant="caption">
-                                If times seem wrong it is because you didn't use the right format.
+                                Review auction setup:
                                 </Typography>
                                 </div>
                                 <div className={classes.container}>
@@ -252,41 +244,54 @@ export const CreateAuction = (props) => {
                                     <ListItemText primary={`Secret word: ${secret}`}/>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemText primary={`Close offers Date: ${offersTime}`} />
+                                    <ListItemText primary={`Close offers Date: ${offersTime.toString().slice(0,34)}`} />
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemText primary={`Close reveals Date: ${revealsTime}`} />
+                                    <ListItemText primary={`Close reveals Date: ${revealsTime.toString().slice(0,34)}`} />
                                 </ListItem>
                                 </List>
                                 </div>
                                 <div className={classes.container}>
                                     <Button variant="contained" color="primary" onClick={() => {confirmAuction()}}>Confirm Auction Creation</Button>
                                     {isMining ? <CircularProgress size={26} /> : ""}
-                                </div>
+                                </div>  
+                                </>
+                                ):(<></>)}
                                 <div className={classes.container}>
                                 {txStatus ? (
                                     <Alert  onClose={handleCloseSnack} severity="success">
-                                        Your Auction has been created, approve and transfer NFT txns will appear shortly. 
+                                        Your Auction has been created at {newAuctionAddress}, approve and transfer NFT txns will appear shortly. 
                                     </Alert>
                                 ):(<></>)}
                                 </div>
-                                <div className={classes.container}>
-                                {newAuctionAddress === "" ? (
-                                    <></>
+                                
+                                {txStatus && !thirdTrigger ? (
+                                    <>
+                                    <Typography variant="h5">
+                                        Now approve your token:
+                                    </Typography>
+                                    <div className={classes.container}>
+                                    <Approve trigger = {(set) => {setThirdTrigger(set)}} nftContract={props.nft.contract.address} nftId={parseInt(props.nft.id.tokenId)} contractAddress={newAuctionAddress}></Approve>
+                                    </div>
+                                    </>
                                 ):(<>
-                                    <Approve nftContract={props.nft.contract.address} nftId={parseInt(props.nft.id.tokenId)} contractAddress={newAuctionAddress}></Approve>
                                 </>)}
-                                </div>
-                                <div className={classes.container}>
-                                {newAuctionAddress === "" ? (
-                                    <></>
-                                ):(<>
-                                    <Transfer auctionContract={newAuctionAddress}></Transfer>
-                                </>)}
-                                </div>
-                            </>
-                        ):(<></>)}
 
+                                
+                                {thirdTrigger ? (
+                                    <>
+                                    <Typography variant="h5">
+                                        One last thing:
+                                    </Typography>
+                                    <div className={classes.container}>
+                                    <Transfer auctionContract={newAuctionAddress}></Transfer>
+                                    </div>  
+                                    </>
+                                ):(<>
+                                </>)}
+                               
+                                
+</div>
                 </Grid>
             </Grid>
         </>

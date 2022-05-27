@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button, TextField, makeStyles} from "@material-ui/core"
+import {CircularProgress, Button, TextField, makeStyles, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
     const useStyles = makeStyles((theme) => ({
@@ -94,7 +94,9 @@ export const MakeOffer = (props) => {
 
     return(
         <>
-        <h2>Make Offer for NFT:</h2>
+        <Typography variant="h5">
+            Make an offer:
+        </Typography>
         <div className={classes.container}>
         <TextField id="setPrice" label="Offer (eth)" variant="standard" onChange={e => ckeckPriceChanges(e.target.value)} />
         </div>

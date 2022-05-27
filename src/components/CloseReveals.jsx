@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles} from "@material-ui/core"
+import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
     const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,9 @@ export const CloseReveals = (props) => {
 
     return(
         <>
-        <h2>Close Reveals:</h2>
+        <Typography variant="h5">
+            Close Reveals:
+        </Typography>
         <div className={classes.container}>
             <List>
                 <ListItem>

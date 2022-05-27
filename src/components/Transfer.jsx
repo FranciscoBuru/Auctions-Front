@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button} from "@material-ui/core"
+import {CircularProgress, Button, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
 
@@ -48,7 +48,7 @@ export const Transfer = (props) => {
         </Button>
         {txStatus ? (
             <Alert  onClose={handleCloseSnack} severity="success">
-               Token deposited
+               Token deposited, Your Auction is LIVE!!
             </Alert>
         ):(<></>)}
         </>

@@ -22,6 +22,7 @@ import {OwnerCloseReveals} from "./OwnerCloseReveals"
 import {WinnerRetrival} from "./WinnerRetrival"
 import {Reinbursements} from "./Reinbursements"
 import {AuctioneerGetPayed} from "./AuctioneerGetPayed"
+import {useEthers} from "@usedapp/core"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const AuctionInteraction = (props) => {
 
+    const {account} = useEthers()
+
     const auctionAbi = new utils.Interface(SealedBidAuction["abi"])
     const auctionContract = new Contract(props.address, auctionAbi, getDefaultProvider('rinkeby'))
     //const auctionContract = 1
@@ -45,6 +48,7 @@ export const AuctionInteraction = (props) => {
     const [revealTime, setRevealTime] = useState()
     const [winner, setWinner] = useState()
     const [offer, setOffer] = useState()
+    const [owner, setOwner] = useState()
 
 
     useEffect(() => {
@@ -73,17 +77,14 @@ export const AuctionInteraction = (props) => {
         revealCloseTime = new Date(revealCloseTime.toString()*1000)
         setOfferTime(offerCloseTime.toString())
         setRevealTime(revealCloseTime.toString())
+        let wnr = await auctionContract.owner();
+        setOwner(wnr)
       }
 
 
     return(
         
         <>
-            <div className={classes.container}>
-            <Typography gutterBottom variant="h4" component="div">
-                This is a live auction in state {props.state}, please keep reading
-            </Typography>
-            </div>
             <div className={classes.container}>
             {winner ? (
                 <Typography gutterBottom variant="h4" component="div">
@@ -98,7 +99,7 @@ export const AuctionInteraction = (props) => {
                 </Typography>
             ):(<></>)}
             </div>
-            <div className={classes.container}>
+            {/*<div className={classes.container}>
                 <List>
                     <ListItem>
                         <ListItemText primary="Prices are in eth." />
@@ -145,14 +146,16 @@ export const AuctionInteraction = (props) => {
                     </ListItem>       
                     </>
                     ):(<></>)}
-                </List>
-            </div>
+                    </List>
+            </div>*/}
             <Grid container spacing={2}>
-                <Grid item xs = {2}></Grid>
+                <Grid item xs = {1}></Grid>
                 <Grid item xs = {4}>
-                <h2>Active Auction For:</h2>
+                <Typography variant="h5">
+                    Active auction for:
+                </Typography>
                     {props.nft ? (
-                    <Card sx={{ maxWidth: 345 }} variant="outlined">
+                    <Card sx={{ maxWidth: 345 }} variant="outlined"  style={{backgroundColor: "#f5f4e4" ,borderRadius: '15px', margin: '10px'}}>
                         <CardMedia
                         component="img"
                         height="320"
@@ -181,39 +184,55 @@ export const AuctionInteraction = (props) => {
                     )}
                     
                 </Grid>
+                <Grid item xs = {1}></Grid>
                 <Grid item xs = {6}>
-                    {offerTime ? (
-                        <div className={classes.container}>
-                            <Typography variant="body2">
-                            Offers close on: {offerTime}
-                            </Typography>
-                        </div>
-                    ):(<></>)}
-                    {revealTime ? (
-                        <div className={classes.container}>
-                            <Typography variant="body2">
-                            Reveals close on: {revealTime}
-                            </Typography>
-                        </div>
-                    ):(<></>)}
                     {props.state === 1 ? (
                         <>
-                        <MakeOffer address = {props.address}></MakeOffer>
+                        {offerTime ? (
+                            <div className={classes.container}>
+                                <Typography variant="body2">
+                                Offers close on: {offerTime.slice(0,34)}
+                                </Typography>
+                            </div>
+                        ):(<></>)}
+                        {account !== owner ? (
+                            <MakeOffer address = {props.address}></MakeOffer>
+                        ):(<></>)}
                         <CloseOffers address = {props.address}></CloseOffers>
                         </>
                     ):(<></>)}
                     {props.state === 2 ? (
                         <>
-                        <RevealOffer address = {props.address}></RevealOffer>
-                        <CloseReveals address = {props.address}></CloseReveals>
-                        <OwnerCloseReveals address = {props.address}></OwnerCloseReveals>
+                        {revealTime ? (
+                            <div className={classes.container}>
+                                <Typography variant="body2">
+                                Reveals close on: {revealTime.slice(0,34)}
+                                </Typography>
+                            </div>
+                        ):(<></>)}
+                        {account !== owner ? (
+                            <RevealOffer address = {props.address}></RevealOffer>
+                        ):(
+                            <OwnerCloseReveals address = {props.address}></OwnerCloseReveals>
+                        )}
+                            <CloseReveals address = {props.address}></CloseReveals>
                         </>
                     ):(<></>)}
                     {props.state === 4 ? (
                         <>
-                        <WinnerRetrival address = {props.address}></WinnerRetrival>
-                        <Reinbursements address = {props.address}></Reinbursements>
-                        <AuctioneerGetPayed address = {props.address}></AuctioneerGetPayed>
+                        {account === winner ? (
+                            <>
+                            <WinnerRetrival address = {props.address}></WinnerRetrival>
+                            <Reinbursements address = {props.address}></Reinbursements>
+                            </>
+                        ):(<></>)}
+                        {account === owner ? (
+                            <AuctioneerGetPayed address = {props.address}></AuctioneerGetPayed>
+                        ):(<></>)}
+                        {account !== owner && account !== winner ? (
+                            <Reinbursements address = {props.address}></Reinbursements>
+                        ):(<></>)}
+                        
                         </>
                     ):(<></>)}
                     

@@ -72,9 +72,23 @@ export const AuctionCard = (props) => {
               Auction address {props.address.slice(0,8)}...{props.address.slice(39,42)}
               </Typography>
               {auctionState ? (
-                  <Typography gutterBottom variant="caption" component="div">
-                  State: {auctionState}
-                  </Typography>
+                auctionState == 1 ? (
+                <Typography gutterBottom variant="caption" component="div">
+                  State: Recive
+                </Typography>
+                  ):(
+                  auctionState == 2 ?(
+                    <Typography gutterBottom variant="caption" component="div">
+                      State: Reveal
+                    </Typography>
+
+                  ):(
+                    <Typography gutterBottom variant="caption" component="div">
+                      State: Ended
+                    </Typography>
+                  )
+                )
+                  
               ):(<></>)}
             </CardContent>
       </CardActionArea>

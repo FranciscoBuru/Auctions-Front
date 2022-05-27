@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles} from "@material-ui/core"
+import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
     const useStyles = makeStyles((theme) => ({
@@ -50,14 +50,9 @@ export const AuctioneerGetPayed = (props) => {
 
     return(
         <>
-        <h2>Auctioneer, get payed:</h2>
-        <div className={classes.container}>
-            <List>
-                <ListItem>
-                    <ListItemText primary="If you created this auction then click the next button to get payed. If the NFT did not sell you will get it back. We hope you liked our auctions!" />
-                </ListItem>
-            </List>
-        </div>
+        <Typography variant="h5">
+            Get payed for your NFT, or get it back in case it did not sell :(
+        </Typography>
         <div className={classes.container}>
         <Button 
             color = "secondary" 

@@ -3,7 +3,7 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import IERC721 from "../chain-info/contracts/IERC721.json"
-import {CircularProgress, Button} from "@material-ui/core"
+import {CircularProgress, Button, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
 
 
@@ -19,6 +19,7 @@ export const Approve = (props) => {
 
     const isMining = status === "Mining"
     const [txStatus, setTxStatus] = useState(false)
+    const [first, setFirst] = useState(0)
 
     const approve = () => {
         void send(props.contractAddress, props.nftId)
@@ -28,9 +29,11 @@ export const Approve = (props) => {
         setTxStatus(false)
     }
 
+
     useEffect(() => {
         if (status === "Success") {
             setTxStatus(true)
+            props.trigger(true)
         }
 
     }, [status])

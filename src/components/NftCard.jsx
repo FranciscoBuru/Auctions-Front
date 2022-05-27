@@ -28,7 +28,7 @@ export const NFTCard = ({ nft, setData, sectionChanger}) => {
               {nft.contract.address}
               </Typography>
               <Typography variant="body2">
-              {nft.description}
+              {nft.description.split(0,20)}
               </Typography>
             </CardContent>
       </CardActionArea>

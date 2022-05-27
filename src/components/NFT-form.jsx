@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {TextField, Button,  Container, ImageList , makeStyles} from "@material-ui/core"
+import {TextField, Button,  Typography, ImageList , makeStyles} from "@material-ui/core"
 import {NFTCard} from "./NftCard"
 import {useEthers} from "@usedapp/core"
 
@@ -39,7 +39,9 @@ export const NFTForm = (props) => {
     return(
         <>
             <div className={classes.container}>
-                <h4>Click on an NFT to auction it.</h4>
+                <Typography gutterBottom variant="h5" component="div">
+                    Click on a token to auction it. 
+                </Typography>
             </div>
             <div className={classes.container}>
             <ImageList sx={{ width: 500, height: 450}} cols={3} rowHeight={164}>

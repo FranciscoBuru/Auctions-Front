@@ -3,8 +3,9 @@ import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
 import { useContractFunction } from '@usedapp/core'
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
-import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles} from "@material-ui/core"
+import {CircularProgress, Button, List, ListItem, ListItemText, makeStyles, Typography} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
+import {useEthers} from "@usedapp/core"
 
     const useStyles = makeStyles((theme) => ({
             container:{
@@ -17,7 +18,7 @@ import Alert from "@material-ui/lab/Alert"
 
 export const Reinbursements = (props) => {
 
-    
+    const {account} = useEthers()
     const classes = useStyles()
 
     const auctionAbi = new utils.Interface(SealedBidAuction["abi"])
@@ -29,6 +30,7 @@ export const Reinbursements = (props) => {
 
     const isMining = status === "Mining"
     const [txStatus, setTxStatus] = useState(false)
+    const [ethToGetBack, setEthToGetBack] = useState()
 
 
     const close = () => {
@@ -42,6 +44,16 @@ export const Reinbursements = (props) => {
 
     }, [status])
 
+    useEffect(() => {
+       calculateReinbrsement()
+
+    }, [])
+
+    const calculateReinbrsement = async () => {
+        let x = auctionContract.accountToAmount(account)
+        setEthToGetBack(utils.formatEther(x))
+    }
+
     const handleCloseSnack = () => {
         setTxStatus(false)
     }
@@ -50,14 +62,9 @@ export const Reinbursements = (props) => {
 
     return(
         <>
-        <h2>Get deposit back:</h2>
-        <div className={classes.container}>
-            <List>
-                <ListItem>
-                    <ListItemText primary="We are sorry that you did not win, here you can get back the eth you depsited at first. Also, the winner can get back any leftover eth (deposit-offer = leftover)" />
-                </ListItem>
-            </List>
-        </div>
+        <Typography variant="h5">
+            Get your {ethToGetBack} eth deposit back. 
+        </Typography>
         <div className={classes.container}>
         <Button 
             color = "secondary" 
