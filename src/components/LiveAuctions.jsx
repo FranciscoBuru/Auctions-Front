@@ -52,7 +52,7 @@ export const LiveAuctions = (props) => {
         console.log(factoryContract)
         while (aux){
             console.log(i)
-            res = await factoryContract.createSealedBidAuctionContract(i).catch(() => res = false)
+            res = await factoryContract.sealedBidAuctionArrayContracts(i).catch(() => res = false)
             if (res){
                 console.log(false)
                 addresses.push(res)
