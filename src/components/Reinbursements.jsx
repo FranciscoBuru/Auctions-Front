@@ -50,8 +50,10 @@ export const Reinbursements = (props) => {
     }, [])
 
     const calculateReinbrsement = async () => {
-        let x = auctionContract.accountToAmount(account)
+        let x = await auctionContract.accountToAmount(account)
+        console.log(x)
         setEthToGetBack(utils.formatEther(x))
+        console.log(ethToGetBack)
     }
 
     const handleCloseSnack = () => {

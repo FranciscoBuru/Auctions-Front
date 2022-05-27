@@ -14,10 +14,8 @@ import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
 //import {formatEther, solidityKeccak256, formatBytes32String } from "@ethersproject"
 import { utils, getDefaultProvider } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
-import {CloseOffers} from "./CloseOffers"
 import {MakeOffer} from "./MakeOffer"
 import {RevealOffer} from "./RevealOffer"
-import {CloseReveals} from "./CloseReveals"
 import {OwnerCloseReveals} from "./OwnerCloseReveals"
 import {WinnerRetrival} from "./WinnerRetrival"
 import {Reinbursements} from "./Reinbursements"
@@ -88,14 +86,14 @@ export const AuctionInteraction = (props) => {
             <div className={classes.container}>
             {winner ? (
                 <Typography gutterBottom variant="h4" component="div">
-                    Auction winner: {winner} eth.
+                    Auction winner: {winner}
                 </Typography>
             ):(<></>)}
             </div>
             <div className={classes.container}>
             {offer ? (
                 <Typography gutterBottom variant="h4" component="div">
-                    Auction winning offer: {offer}
+                    Auction winning offer: {offer} eth.
                 </Typography>
             ):(<></>)}
             </div>
@@ -159,7 +157,7 @@ export const AuctionInteraction = (props) => {
                         <CardMedia
                         component="img"
                         height="320"
-                        image= {props.nft.metadata.image}
+                        image= {props.nft !== undefined ? (props.nft.metadata.image):("")}
                         alt="nft"
                         />
                         <CardContent>
@@ -167,13 +165,16 @@ export const AuctionInteraction = (props) => {
                         {props.nft.title}
                         </Typography>
                         <Typography variant="body2">
-                        Contract: {props.nft.contract.address}
+                        Token Contract: {props.nft.contract.address}
                         </Typography>
                         <Typography variant="body2">
                         ID: {parseInt(props.nft.id.tokenId)}
                         </Typography>
                         <Typography variant="body2">
                         {props.nft.description}
+                        </Typography>
+                        <Typography variant="body2">
+                        Auction Contract: {props.address}
                         </Typography>
                         </CardContent>
                     </Card>
@@ -198,7 +199,6 @@ export const AuctionInteraction = (props) => {
                         {account !== owner ? (
                             <MakeOffer address = {props.address}></MakeOffer>
                         ):(<></>)}
-                        <CloseOffers address = {props.address}></CloseOffers>
                         </>
                     ):(<></>)}
                     {props.state === 2 ? (
@@ -215,7 +215,6 @@ export const AuctionInteraction = (props) => {
                         ):(
                             <OwnerCloseReveals address = {props.address}></OwnerCloseReveals>
                         )}
-                            <CloseReveals address = {props.address}></CloseReveals>
                         </>
                     ):(<></>)}
                     {props.state === 4 ? (
@@ -226,6 +225,9 @@ export const AuctionInteraction = (props) => {
                             <Reinbursements address = {props.address}></Reinbursements>
                             </>
                         ):(<></>)}
+                        {console.log(account)}
+                        {console.log(owner)}
+                        {console.log(account === owner)}
                         {account === owner ? (
                             <AuctioneerGetPayed address = {props.address}></AuctioneerGetPayed>
                         ):(<></>)}

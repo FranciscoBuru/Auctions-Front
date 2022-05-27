@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Button,  ImageList, makeStyles} from "@material-ui/core"
+import {Button,  ImageList, makeStyles, Typography} from "@material-ui/core"
 import AuctionFactory from "../chain-info/contracts/AuctionFactory.json"
 import SealedBidAuction from "../chain-info/contracts/SealedBidAuction.json"
 import { constants, utils, getDefaultProvider } from 'ethers'
@@ -67,7 +67,9 @@ export const LiveAuctions = (props) => {
     return(
         <>
         <div className={classes.container}>
-                <h4>Click on an auction to interact with it.</h4>
+                <Typography gutterBottom variant="h5" component="div">
+                    Click on an auction to interact with it. 
+                </Typography>
             </div>
         {indicador ? (
             <>
