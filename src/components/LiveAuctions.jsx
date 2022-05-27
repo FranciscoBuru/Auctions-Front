@@ -22,6 +22,7 @@ export const LiveAuctions = (props) => {
     const classes = useStyles()
     const { chainId } = useEthers()
     const factoryAddress = chainId ? networkMapping[String(chainId)]["AuctionFactory"][0] : constants.AddressZero
+    console.log(factoryAddress)
     const factoryAbi = new utils.Interface(AuctionFactory["abi"])
     const factoryContract = new Contract(factoryAddress, factoryAbi, getDefaultProvider('rinkeby'))
 
@@ -51,7 +52,7 @@ export const LiveAuctions = (props) => {
         console.log(factoryContract)
         while (aux){
             console.log(i)
-            res = await factoryContract.sealedBidAuctionArray(i).catch(() => res = false)
+            res = await factoryContract.createSealedBidAuctionContract(i).catch(() => res = false)
             if (res){
                 console.log(false)
                 addresses.push(res)
