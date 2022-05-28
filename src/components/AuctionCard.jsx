@@ -35,9 +35,17 @@ export const AuctionCard = (props) => {
         let nfts
         if(state !== 0){
             nfts = await fetch(`https://eth-rinkeby.alchemyapi.io/v2/ZYsupiPu2rnvt3564piMlnA2dImfRsDv/getNFTs?owner=${props.address}`)
-            .then(data => data.json())
-            setToken(nfts.ownedNfts[0])
-            setImageUrl(nfts.ownedNfts[0] !== undefined ? (nfts.ownedNfts[0].metadata.image):(""))
+            .then(data => data.json()).catch(() => undefined)
+            if(nfts !== undefined){
+              setToken(nfts.ownedNfts[0])
+              if(nfts.ownedNfts[0] !== undefined){
+                setImageUrl(nfts.ownedNfts[0].metadata.image)
+              }else{
+                setImageUrl('../../public/logo512.png')
+              }
+            }
+            
+            
         }
     }
 

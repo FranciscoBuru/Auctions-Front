@@ -11,7 +11,8 @@ import {
     TextField,
     ListItemText,  
     List,
-    ListItem,  
+    ListItem, 
+    Link, 
     Tooltip,
     makeStyles} from "@material-ui/core"
 import AuctionFactory from "../chain-info/contracts/AuctionFactory.json"
@@ -223,7 +224,7 @@ export const CreateAuction = (props) => {
                     </div>
                     <div className={classes.container}>
                         <Button variant="contained" color="primary" onClick={() => {createAuction()}}>Create Auction!</Button>
-                        <Button variant="text">Read the FAQ</Button>
+                        <Link component='button' variant='outlined' href='https://github.com/FranciscoBuru/SealedBidAuctionsLink#frontend-faqs'>FAQs</Link>
                     </div>   
                     </>):(<></>)}             
                     <div ref={myRef}>
